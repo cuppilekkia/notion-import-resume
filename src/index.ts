@@ -3,7 +3,7 @@ import NotionService from "./services/notion";
 
 
 (async () => {
-    const pageId = "3f54882e312c488dabe9f5749c302bd4"
+    const pageId = process.env.RESUME_PAGE_ID || ""
     
     const page = await NotionService.getPage(pageId)
     console.log(page)
