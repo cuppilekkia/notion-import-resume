@@ -1,0 +1,11 @@
+# Node modules
+node_modules
+
+# Build files
+dist
+
+# Env files
+.env
+
+# Yarn stuff
+yarn-error.log
