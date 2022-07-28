@@ -1,7 +1,10 @@
-import "dotenv/config"
+import dotenv from "dotenv"
+dotenv.config()
 
-const PAGE_ID = process.env.RESUME_PAGE_ID || ""
+const SERVER_PORT = process.env.PORT || 8080
+const RESUME_PAGE_ID = process.env.RESUME_PAGE_ID || ""
 
 export {
-    PAGE_ID,
+    SERVER_PORT,
+    RESUME_PAGE_ID,
 }

@@ -10,6 +10,6 @@ export class ListItemBlock extends Block {
     }
 
     toJson() {
-        return this.content
+        return this.content.join(" ")
     }
 }

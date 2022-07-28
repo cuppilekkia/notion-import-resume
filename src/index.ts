@@ -1,13 +1,17 @@
-import { PAGE_ID } from "./config"
+import { RESUME_PAGE_ID, SERVER_PORT } from "./config"
 import { ContentManager } from "./managers/content"
 import NotionService from "./services/notion"
+import express, { Express, Request, Response } from "express"
+
+const app: Express = express()
 
 
-(async () => {
+app.get("/", async (req: Request, res: Response) => {
     const manager = new ContentManager(NotionService)
-    const res = await manager.getStructuredContent(PAGE_ID)
-    console.log(res)
-    
-    return res
-})()
+    const result = await manager.getStructuredContent(RESUME_PAGE_ID)
+    res.json(result)
+})
 
+app.listen(SERVER_PORT, () => {
+    console.log(`⚡️[server]: Server is running at https://localhost:${SERVER_PORT}`)
+})
