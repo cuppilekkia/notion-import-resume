@@ -2,10 +2,14 @@ import { QuoteBlockObjectResponse, TextRichTextItemResponse } from "@notionhq/cl
 import { Block } from "../base-model"
 
 export class QuoteBlock extends Block {
-    private content: string[]
-
+    PRIORITY = 4
+    
     constructor(data: QuoteBlockObjectResponse) {
         super(data)
         this.content = this.extractTextContent(data[data.type].rich_text as TextRichTextItemResponse[])
+    }
+
+    toJson() {
+        return this.content.join(" ")
     }
 }

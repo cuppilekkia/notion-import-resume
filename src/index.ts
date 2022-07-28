@@ -1,15 +1,13 @@
-import "dotenv/config"
-import NotionService from "./services/notion";
+import { PAGE_ID } from "./config"
+import { ContentManager } from "./managers/content"
+import NotionService from "./services/notion"
 
 
 (async () => {
-    const pageId = process.env.RESUME_PAGE_ID || ""
+    const manager = new ContentManager(NotionService)
+    const res = await manager.getStructuredContent(PAGE_ID)
+    console.log(res)
     
-    const page = await NotionService.getPage(pageId)
-    console.log(page)
-    
-    const blocks = await NotionService.getPageBlocks(pageId)
-    console.log(blocks.length)
-    console.log(blocks)
+    return res
 })()
 
