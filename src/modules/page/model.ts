@@ -28,7 +28,7 @@ export class Page implements Prioritizable {
         return this.PRIORITY < element.PRIORITY ? -1 : 1
     }
 
-    toJson() {
+    toArray() {
         return [
             this.title,
         ]

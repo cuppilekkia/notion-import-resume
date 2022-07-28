@@ -9,7 +9,7 @@ export class ParagraphBlock extends Block {
         this.content = this.extractTextContent(data[data.type].rich_text as TextRichTextItemResponse[])
     }
 
-    toJson() {
+    toArray() {
         return this.content.join("")
     }
 }

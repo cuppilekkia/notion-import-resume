@@ -11,7 +11,7 @@ export class List {
         return this.head
     }
 
-    toJson() {
-        return this.head.toJson()
+    toArray() {
+        return this.head.toArray()
     }
 }

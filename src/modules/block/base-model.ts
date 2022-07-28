@@ -33,7 +33,7 @@ export class Block implements Prioritizable {
         return this.PRIORITY < element.PRIORITY ? -1 : 1
     }
 
-    toJson(): string | string[] {
+    toArray(): string | string[] {
         return ""
     }
 }

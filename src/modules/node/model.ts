@@ -35,10 +35,14 @@ export class Node {
         return this.model
     }
 
-    toJson() {
+    hasChildren() {
+        return this.children.length
+    }
+
+    toArray() {
         return [
-            this.model.toJson(),
-            ...this.children.map((child): string | string[] => child.toJson())
-        ] as string|string[]
+            this.model.toArray(),
+            ...this.children.map((child): string | string[] => child.toArray())
+        ] as string[]
     }
 }
