@@ -4,16 +4,19 @@
   "main": "dist/index.js",
   "author": "Antonio Coppola",
   "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build-ts": "tsc",
-    "build": " yarn run lint && yarn run build-ts",
+    "build": " npm run lint && npm run build-ts",
     "lint": "eslint src/**/* --quiet --fix",
     "serve-debug": "nodemon --inspect dist/server.js",
     "serve": "node dist/src/index.js",
-    "start": "yarn run serve",
+    "start": "npm run watch-node",
     "test": "jest --forceExit --coverage --verbose",
     "watch-node": "nodemon src/index.ts",
-    "watch-test": "yarn run test -- --watchAll",
+    "watch-test": "npm run test -- --watchAll",
     "watch-ts": "tsc -w"
   },
   "devDependencies": {
