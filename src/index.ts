@@ -5,10 +5,16 @@ import express, { Express, Request, Response } from "express"
 
 const app: Express = express()
 
-
 app.get("/resume", async (req: Request, res: Response) => {
     const manager = new ContentManager(NotionService)
     const result = await manager.getStructuredContent(RESUME_PAGE_ID)
+
+    res.json(result)
+})
+
+app.get("/raw", async (req: Request, res: Response) => {
+    const manager = new ContentManager(NotionService)
+    const result = await manager.getRaw(RESUME_PAGE_ID)
 
     res.json(result)
 })

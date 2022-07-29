@@ -2,8 +2,7 @@ import { ContentProvider } from "../../common/contentProvider"
 import { ListFactory } from "../../modules/list/factory"
 
 type StructuredContent = {
-    title?: string,
-    content?: Content
+    [key: string]: Content,
 }
 type Content = string[] | StructuredContent[]
 
@@ -12,9 +11,13 @@ export class ContentManager {
         private provider: ContentProvider,
     ) {}
 
+    async getRaw(pageId: string) {
+        const [page, blocks] = await this.getPageBlocks(pageId)
+        return [page, blocks]
+    }
+
     async getContentArray(pageId: string): Promise<string[]> {
-        const page = await this.provider.getPage(pageId)
-        const blocks = await this.provider.getPageBlocks(pageId)
+        const [page, blocks] = await this.getPageBlocks(pageId)
 
         const list = ListFactory.make(page, blocks)
 
@@ -25,6 +28,13 @@ export class ContentManager {
         const result: string[] = await this.getContentArray(pageId)
 
         return result.map(ContentManager.flatArray)
+    }
+
+    private getPageBlocks(pageId: string) {
+        return Promise.all([
+            this.provider.getPage(pageId),
+            this.provider.getPageBlocks(pageId)
+        ])
     }
 
     private static flatArray(section: any): StructuredContent {
@@ -39,12 +49,8 @@ export class ContentManager {
 
         rest = rest.map(ContentManager.flatArray)
 
-        const result: StructuredContent = {}
-        result.title = title
-
-        if (rest.length) {
-            result.content = rest
+        return {
+            [title]: rest
         }
-        return result
     }
 }
