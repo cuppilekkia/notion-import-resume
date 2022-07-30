@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client"
 import { BlockObjectResponse, ListBlockChildrenResponse, PageObjectResponse, PropertyItemListResponse } from "@notionhq/client/build/src/api-endpoints"
-import { ContentProvider } from "src/common/contentProvider"
+import { ContentProvider } from "src/common/contentProvider.interface"
 import { Block } from "../../modules/block/base-model"
 import { BlockFactory } from "../../modules/block/factory"
 import { PageFactory } from "../../modules/page/factory"

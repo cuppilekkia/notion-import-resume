@@ -12,4 +12,14 @@ export class ParagraphBlock extends Block {
     toArray() {
         return this.content.join("")
     }
+
+    extractTextContent(richTexts: TextRichTextItemResponse[]): string[] {
+        return richTexts.map((item: TextRichTextItemResponse) => {
+            let content = item.text.content.trim()
+            if (item.text.link) {
+                content = `[${content}](${item.text.link.url})`
+            }
+            return content
+        }).filter(Boolean)
+    }
 }

@@ -1,4 +1,4 @@
-import { ContentProvider } from "../../common/contentProvider"
+import { ContentProvider } from "../../common/contentProvider.interface"
 import { ListFactory } from "../../modules/list/factory"
 
 type StructuredContent = {
