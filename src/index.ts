@@ -1,23 +1,12 @@
-import { RESUME_PAGE_ID, SERVER_PORT } from "./config"
-import { ContentManager } from "./managers/content"
-import NotionService from "./services/notion"
-import express, { Express, Request, Response } from "express"
+import { SERVER_PORT } from "./config"
+import express, { Express } from "express"
+import { resumeRoutes } from "./routes/resume"
+import { errorHandler } from "./error/handlers"
 
 const app: Express = express()
 
-app.get("/resume", async (req: Request, res: Response) => {
-    const manager = new ContentManager(NotionService)
-    const result = await manager.getStructuredContent(RESUME_PAGE_ID)
-
-    res.json(result)
-})
-
-app.get("/raw", async (req: Request, res: Response) => {
-    const manager = new ContentManager(NotionService)
-    const result = await manager.getRaw(RESUME_PAGE_ID)
-
-    res.json(result)
-})
+app.use("/resume", resumeRoutes)
+app.use(errorHandler)
 
 app.listen(SERVER_PORT, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${SERVER_PORT}`)
